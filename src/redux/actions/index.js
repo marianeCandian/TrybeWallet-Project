@@ -3,6 +3,7 @@ export const LOGIN_FORM = 'LOGIN_FORM ';
 export const WALLET_FORM = 'WALLET_FORM';
 export const INICIAL_REQ = 'INICIAL_REQ';
 export const GET_API = 'GET_API';
+export const UPDATE_WALLET = 'UPDATE_WALLET';
 
 export const userForm = (payload) => ({
   type: LOGIN_FORM,
@@ -27,3 +28,14 @@ export const getRequest = () => async (dispatch) => {
     throw new Error(error);
   }
 };
+
+export const fetchApi = async () => {
+  const response = await fetch('https://economia.awesomeapi.com.br/json/all');
+  const data = await response.json();
+  return data;
+};
+
+export const upDateWallet = (payload) => ({
+  type: UPDATE_WALLET,
+  payload,
+});
