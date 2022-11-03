@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { deleteExpenes } from '../redux/actions';
 
 class Table extends Component {
+  hadleRemove = (id) => {
+    const { expenses, dispatch } = this.props;
+    const result = expenses.filter((e) => e.id !== id);
+    dispatch(deleteExpenes(result));
+  };
+
   render() {
     const { expenses } = this.props;
     return (
@@ -49,6 +56,7 @@ class Table extends Component {
                 <button
                   type="button"
                   data-testid="delete-btn"
+                  onClick={ () => this.hadleRemove(e.id) }
                 >
                   Excluir
                 </button>
@@ -65,6 +73,7 @@ Table.propTypes = {
   expenses: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
   })).isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

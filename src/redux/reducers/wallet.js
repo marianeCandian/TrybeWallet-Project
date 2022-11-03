@@ -1,5 +1,5 @@
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
-import { INICIAL_REQ, GET_API, UPDATE_WALLET } from '../actions';
+import { INICIAL_REQ, GET_API, UPDATE_WALLET, DELETE_EXPENES } from '../actions';
 
 const INITIAL_STATE = ({
   currencies: [], // array de string
@@ -25,8 +25,18 @@ const wallet = (state = INITIAL_STATE, action) => {
       ...state,
       expenses: [...state.expenses, { ...action.payload }],
       total: state.total + (
-        Number(action.payload.exchangeRates[action.payload.currency].ask)
-        * Number(action.payload.value)),
+        parseFloat(action.payload.exchangeRates[action.payload.currency].ask)
+        * parseFloat(action.payload.value)),
+    };
+  case DELETE_EXPENES:
+    return {
+      ...state,
+      expenses: action.payload,
+      total: action.payload.reduce((acc, curr) => {
+        acc += (parseFloat(curr.value)
+        * parseFloat(curr.exchangeRates[curr.currency].ask));
+        return acc;
+      }, 0),
     };
   default:
     return state;

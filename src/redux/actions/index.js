@@ -4,6 +4,7 @@ export const WALLET_FORM = 'WALLET_FORM';
 export const INICIAL_REQ = 'INICIAL_REQ';
 export const GET_API = 'GET_API';
 export const UPDATE_WALLET = 'UPDATE_WALLET';
+export const DELETE_EXPENES = 'DELETE_EXPENES';
 
 export const userForm = (payload) => ({
   type: LOGIN_FORM,
@@ -37,5 +38,10 @@ export const fetchApi = async () => {
 
 export const upDateWallet = (payload) => ({
   type: UPDATE_WALLET,
+  payload,
+});
+
+export const deleteExpenes = (payload) => ({
+  type: DELETE_EXPENES,
   payload,
 });
