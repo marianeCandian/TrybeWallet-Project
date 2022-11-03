@@ -1,23 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getRequest, fetchApi, upDateWallet } from '../redux/actions';
+import { fetchApi, upDateWallet } from '../redux/actions';
 
 class WalletForm extends Component {
   state = {
     id: -1,
     description: '',
     value: '',
-    currency: '',
-    method: '',
-    tag: '',
+    currency: 'USD',
+    method: 'Dinheiro',
+    tag: 'Alimentação',
     exchangeRates: {},
   };
-
-  componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(getRequest());
-  }
 
   handleInput = ({ target: { name, value } }) => {
     this.setState({ [name]: value });
@@ -67,10 +62,10 @@ class WalletForm extends Component {
             onChange={ this.handleInput }
           />
         </label>
-        <label htmlFor="moeda">
+        <label htmlFor="currency">
           Moeda
           <select
-            id="moeda"
+            id="currency"
             name="currency"
             data-testid="currency-input"
             value={ currency }
@@ -92,9 +87,9 @@ class WalletForm extends Component {
             data-testid="method-input"
             onChange={ this.handleInput }
           >
-            <option value="dinheiro">Dinheiro</option>
-            <option value="credito">Cartão de crédito</option>
-            <option value="debito">Cartão de débito</option>
+            <option>Dinheiro</option>
+            <option>Cartão de crédito</option>
+            <option>Cartão de débito</option>
           </select>
         </label>
         <label htmlFor="tag">
@@ -106,11 +101,11 @@ class WalletForm extends Component {
             data-testid="tag-input"
             onChange={ this.handleInput }
           >
-            <option value="alimentacao">Alimentação</option>
-            <option value="lazer">Lazer</option>
-            <option value="trabalho">Trabalho</option>
-            <option value="transporte">Transporte</option>
-            <option value="saude">Saúde</option>
+            <option>Alimentação</option>
+            <option>Lazer</option>
+            <option>Trabalho</option>
+            <option>Transporte</option>
+            <option>Saúde</option>
           </select>
         </label>
         <button
