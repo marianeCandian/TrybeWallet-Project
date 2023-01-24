@@ -16,7 +16,9 @@ class Wallet extends React.Component {
     return (
       <>
         <Header />
+        <br />
         <WalletForm />
+        <br />
         <Table />
       </>
     );

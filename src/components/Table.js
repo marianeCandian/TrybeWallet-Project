@@ -10,6 +10,10 @@ class Table extends Component {
     dispatch(deleteExpenes(result));
   };
 
+  handleEdit = (id) => {
+    const { expenses, dispatch } = this.props;
+  };
+
   render() {
     const { expenses } = this.props;
     return (
@@ -50,6 +54,7 @@ class Table extends Component {
                 <button
                   type="button"
                   data-testid="edit-btn"
+                  onClick={ () => this.handleEdit(e.id) }
                 >
                   Editar
                 </button>
